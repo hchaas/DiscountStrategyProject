@@ -1,6 +1,8 @@
 
 package discountstrategyproject;
 
+import java.util.Scanner;
+
 public class Startup {
 
     public static void main(String[] args) {
@@ -14,11 +16,16 @@ public class Startup {
         
         
         //customer 1 sales
-        //register.startTransaction();
+//        System.out.println("Enter customer ID or hit enter if none: ");
+//        Scanner input = new Scanner(System.in);
+//        String custID = input.nextLine();
+//        input.nextLine();
+        
+        register.startTransaction("100");
         //customerID, productID, quantity
-        register.addItem("100", "A101", 1);
-//        register.addItem("100", "B205", 2);
-//        register.addItem("100", "C222", 4);
+        register.addItem("A101", 1);
+        register.addItem("B205", 2);
+        register.addItem("C222", 4);
         register.endTransaction();
         
         //customer 2 sales

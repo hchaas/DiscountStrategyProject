@@ -9,66 +9,83 @@ public class LineItem {
     private Product product;
     private DataAccessStrategy dataAccess;
     private DiscountStrategy discount;
-    private LineItem[] lineItems;
+    
 
-    public LineItem() {
-
-    }
+//    public LineItem(DataAccessStrategy dataAccess, DiscountStrategy discount) {
+//        this.setDataAccessStrategy(dataAccess);
+//        this.setDiscountStrategy(discount);
+//    }
 
     public LineItem(String prodID, double qty, DataAccessStrategy dataAccess, DiscountStrategy discount) {
+        this.setProdID(prodID);
+        this.setQuantity(qty);
+        this.setDataAccessStrategy(dataAccess);
+        this.setDiscountStrategy(discount);
+        this.product = new Product(prodID, dataAccess);
+    }
+    
+    public final void setProdID(String prodID){
+        if (prodID == null || prodID.isEmpty()){
+            throw new IllegalArgumentException("Product ID cannot be null or blank.");
+        }
         this.prodID = prodID;
+    }
+    
+    public final void setQuantity(double qty){
+        if (qty<1){
+            throw new IllegalArgumentException("Quantity cannot be less than one.");
+        }
         this.qty = qty;
+    }
+    
+    public final void setDataAccessStrategy(DataAccessStrategy dataAccess){
+        if (dataAccess == null){
+            throw new IllegalArgumentException("Data access strategy cannot be blank.");
+        }
         this.dataAccess = dataAccess;
+    }
+    
+    public final void setDiscountStrategy(DiscountStrategy discount){
+        if (discount == null){
+            throw new IllegalArgumentException("Discount strategy cannot be null.");
+        }
         this.discount = discount;
-        Product product = new Product(dataAccess);
-        this.product = product;
     }
 
-    public Product findProduct(String prodID) {
+    public final Product findProduct(String prodID) {
         return product.findProduct(prodID);
     }
 
-    public void addToArray(final LineItem item) {
-        // needs validation
-        LineItem[] tempItems = new LineItem[lineItems.length + 1];
-        System.arraycopy(lineItems, 0, tempItems, 0, lineItems.length);
-        tempItems[lineItems.length] = item;
-        lineItems = tempItems;
-    }
-
-    public LineItem[] getAllItems() {
-        return lineItems;
-    }
-
-    public String getProdID() {
+    public final String getProdID() {
         return product.getProdID();
     }
 
-    public String getProdName() {
+    public final String getProdName() {
         return product.getProdName();
     }
 
-    public double getQuantity() {
+    public final double getQuantity() {
         return qty;
     }
 
-    public double getProdPrice() {
-        return this.getProdPrice();
+    public final double getProdPrice() {
+        return product.getProdPrice();
     }
     
-    public double getDiscount(){
+    public final double getDiscount(){
         return product.getDiscount();
     }
     
-    public double getLineItemTotalBeforeDiscount(){
+    public final double getLineItemTotalBeforeDiscount(){
         return (this.getProdPrice() * this.getQuantity());
     }
     
-    public double getLineItemDiscount(){
+    public final double getLineItemDiscount(){
         return(this.getProdPrice()*this.getQuantity()*this.getDiscount());
     }
     
-    public double getLinItemTotalAfterDiscount(){
+    public final double getLineItemTotalAfterDiscount(){
         return (this.getLineItemTotalBeforeDiscount() - this.getLineItemDiscount());
     }
+    
 }

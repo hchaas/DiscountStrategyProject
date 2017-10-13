@@ -8,10 +8,11 @@ public class Receipt {
     private ReceiptOutputStrategy consoleOutput;
     private DataAccessStrategy dataAccess;
     private DiscountStrategy discount;
-    private String custName;
     private String custID;
-    private Date date = new Date();
-    private String storeName = "Kohl's Department Store";
+    private Customer customer;
+    private final Date date = new Date();
+    private final String storeName = "Kohl's Department Store";
+    private LineItem[] lineItems = new LineItem[0];
 
     //things needed in a receipt: 
     // date, store name, customer name, prod line items
@@ -20,67 +21,90 @@ public class Receipt {
         this.setConsoleOutputStrategy(consoleOutput);
         this.setDataAccessStrategy(dataAccess);
         this.setDiscountStrategy(discount);
+        this.customer = new Customer(dataAccess);
+        
     }
 
-    public void setScreenOutputStrategy(ReceiptOutputStrategy screenOutput) {
+    public final void setScreenOutputStrategy(ReceiptOutputStrategy screenOutput) {
         if (screenOutput == null) {
             throw new IllegalArgumentException("Screen output strategy cannot be null.");
         }
+        this.screenOutput = screenOutput;
     }
 
-    public void setConsoleOutputStrategy(ReceiptOutputStrategy consoleOutput) {
+    public final void setConsoleOutputStrategy(ReceiptOutputStrategy consoleOutput) {
         if (consoleOutput == null) {
             throw new IllegalArgumentException("Console output strategy cannot be null.");
         }
+        this.consoleOutput = consoleOutput;
     }
 
-    public void setDataAccessStrategy(DataAccessStrategy dataAccess) {
+    public final void setDataAccessStrategy(DataAccessStrategy dataAccess) {
         if (dataAccess == null) {
             throw new IllegalArgumentException("Data access strategy cannot be null.");
         }
+        this.dataAccess = dataAccess;
     }
 
-    public void setDiscountStrategy(DiscountStrategy discount) {
+    public final void setDiscountStrategy(DiscountStrategy discount) {
         if (discount == null) {
             throw new IllegalArgumentException("Default discount strategy cannot be null.");
         }
+        this.discount = discount;
     }
 
-    public void setCustID(String custID) {
+    public final void setCustID(String custID) {
+        if (custID == null || custID.isEmpty()) {
+            throw new IllegalArgumentException("Customer ID cannot be blank.");
+        }
         this.custID = custID;
     }
 
-    public void newLineItem(String custId, String prodID, double qty) {
-        this.setCustID(custId);
+    public final void newLineItem(String prodID, double qty) {
         LineItem lineItem = new LineItem(prodID, qty, dataAccess, discount);
-        lineItem.addToArray(lineItem);
+        this.addToArray(lineItem);
     }
 
-    public Customer findCustomer(DataAccessStrategy dataAccess, String custID) {
-        Customer customer = new Customer(dataAccess);
+    public final Customer findCustomer() {
         return customer.findCustomer(custID);
+        
     }
 
-    public Date getTodaysDate() {
+    public final Date getTodaysDate() {
         return date;
     }
 
-    public LineItem[] getLineItems() {
-        LineItem lineItem = new LineItem();
-        return lineItem.getAllItems();
-    }
-
-    public String getStoreName() {
+    public final String getStoreName() {
         return storeName;
     }
 
-    public String getCustID() {
+    public final String getCustID() {
         return custID;
     }
 
-    public void initiateOutput() {
+    public final void addToArray(final LineItem item) {
+        // needs validation
+        LineItem[] tempItems = new LineItem[lineItems.length + 1];
+        System.arraycopy(lineItems, 0, tempItems, 0, lineItems.length);
+        tempItems[lineItems.length] = item;
+        lineItems = tempItems;
+    }
+
+    public final LineItem[] getAllItems() {
+        return lineItems;
+    }
+
+    public final void initiateOutput() {
         screenOutput.output(this);
         consoleOutput.output(this);
+    }
+    
+    public final double getGrandTotal(){
+        double total = 0;
+        for(int i=0; i<lineItems.length; i++){
+            total += lineItems[i].getLineItemTotalAfterDiscount();
+        }
+        return total;
     }
 
 }
