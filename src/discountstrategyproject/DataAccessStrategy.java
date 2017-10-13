@@ -3,5 +3,6 @@ package discountstrategyproject;
 
 public interface DataAccessStrategy {
     
-    public abstract String getData(String id);
+    public abstract Customer getCustomerData(String custId);
+    public abstract Product getProductData(String prodID);
 }
