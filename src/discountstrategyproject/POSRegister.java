@@ -2,12 +2,9 @@ package discountstrategyproject;
 
 public class POSRegister {
     private Receipt receipt;
-//    private ReceiptOutputStrategy screenOutput;
-//    private ReceiptOutputStrategy consoleOutput;
     
-    public POSRegister(ReceiptOutputStrategy screenOutput, ReceiptOutputStrategy consoleOutput){
-        Receipt newReceipt = new Receipt(screenOutput, consoleOutput);
-        newReceipt = receipt;
+    public POSRegister(ReceiptOutputStrategy screenOutput, ReceiptOutputStrategy consoleOutput, DataAccessStrategy dataAccess, DiscountStrategy discount){
+        this.receipt = new Receipt(screenOutput, consoleOutput, dataAccess, discount);
     }
     
     public void startTransaction() {

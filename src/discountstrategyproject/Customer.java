@@ -2,13 +2,12 @@
 package discountstrategyproject;
 
 public class Customer {
-    private CustomerDataAccess customerData;
+    private DataAccessStrategy dataAccess;
     private String custID;
     private String custName;
     
-    public Customer(){
-        CustomerDataAccess customerDataAccess = new CustomerDataAccess();
-        customerDataAccess = customerData;
+    public Customer(DataAccessStrategy dataAccess){
+        this.dataAccess = dataAccess;
     }
     
     public Customer(String custID, String custName){
@@ -25,6 +24,6 @@ public class Customer {
     }
     
     public Customer findCustomer(String custID){
-        return customerData.getData(custID);
+        return dataAccess.getCustomerData(custID);
     }
 }

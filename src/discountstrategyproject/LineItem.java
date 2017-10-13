@@ -1,32 +1,31 @@
-
 package discountstrategyproject;
 
 public class LineItem {
 
-    private String custID;
     private String prodID;
     private double qty;
     private String prodName;
     private double prodDiscount;
     private Product product;
-    
+    private DataAccessStrategy dataAccess;
+    private DiscountStrategy discount;
     private LineItem[] lineItems;
 
-    //ProdId*  ProdName*     Qty+ UnitCost*  ExtCost^ Discount*
-    
-    public LineItem(String custID, String prodID, double qty) {
-        this.custID = custID;
+    public LineItem() {
+
+    }
+
+    public LineItem(String prodID, double qty, DataAccessStrategy dataAccess, DiscountStrategy discount) {
         this.prodID = prodID;
         this.qty = qty;
-        Product product = new Product();
-        this.product = this.findProduct(prodID);
-        
+        this.dataAccess = dataAccess;
+        this.discount = discount;
+        Product product = new Product(dataAccess);
+        this.product = product;
     }
-    
-    
-    public Product findProduct(String prodID){
-        
-        return product;
+
+    public Product findProduct(String prodID) {
+        return product.findProduct(prodID);
     }
 
     public void addToArray(final LineItem item) {
@@ -37,4 +36,39 @@ public class LineItem {
         lineItems = tempItems;
     }
 
+    public LineItem[] getAllItems() {
+        return lineItems;
+    }
+
+    public String getProdID() {
+        return product.getProdID();
+    }
+
+    public String getProdName() {
+        return product.getProdName();
+    }
+
+    public double getQuantity() {
+        return qty;
+    }
+
+    public double getProdPrice() {
+        return this.getProdPrice();
+    }
+    
+    public double getDiscount(){
+        return product.getDiscount();
+    }
+    
+    public double getLineItemTotalBeforeDiscount(){
+        return (this.getProdPrice() * this.getQuantity());
+    }
+    
+    public double getLineItemDiscount(){
+        return(this.getProdPrice()*this.getQuantity()*this.getDiscount());
+    }
+    
+    public double getLinItemTotalAfterDiscount(){
+        return (this.getLineItemTotalBeforeDiscount() - this.getLineItemDiscount());
+    }
 }
