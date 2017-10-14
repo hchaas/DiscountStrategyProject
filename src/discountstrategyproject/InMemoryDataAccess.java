@@ -3,15 +3,17 @@ package discountstrategyproject;
 public class InMemoryDataAccess implements DataAccessStrategy{
 
     private Customer[] customers = {
-        new Customer("100", "John Smith"),
-        new Customer("200", "Sally Jones"),
-        new Customer("300", "Bob Clementi")
+        new Customer("100", "Jim Bolthouse"),
+        new Customer("200", "Gloria Violet"),
+        new Customer("300", "Sam Smith")
     };
 
     private Product[] products = {
         new Product("A101", "MLB Brewer's Hat ", 19.95, new PercentOffDiscount(0.15)),
         new Product("B205", "Men's Dress Shirt", 35.50, new PercentOffDiscount(0.15)),
         new Product("C222", "Women's Socks", 9.50, new NoDiscount()),
+        new Product("D422", "Baby Bib", 4.95, new NoDiscount()),
+        new Product("E121", "Running Shoes", 49.99, new PercentOffDiscount(0.10))
     };
 
     @Override

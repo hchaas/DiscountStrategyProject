@@ -23,8 +23,10 @@ public class Startup {
         register.endTransaction();
         
         //customer 2 sales
-        
-        
+        register.startTransaction("300");
+        register.addItem("C222", 1);
+        register.addItem("E121", 2);
+        register.addItem("D422", 4);
     
     }
     

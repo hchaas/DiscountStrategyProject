@@ -8,6 +8,7 @@ public class ScreenOutput implements ReceiptOutputStrategy {
     @Override
     public final void output(Receipt receipt){
         String receiptTop;
+        String pad = "     ";
         
         String custID = receipt.getCustID();
         String custName;
@@ -21,10 +22,10 @@ public class ScreenOutput implements ReceiptOutputStrategy {
         }
 
         
-        receiptTop = ("Thank you for shopping at " + receipt.getStoreName() + "!" + "\t" + receipt.getTodaysDate() + "\n\n" + 
-                    "Customer ID: " + custID + "\t" + "Customer Name: " + custName + "\n" +
-                    "ProdID" + "\t" + "ProdName" + "\t" + "Qty" + "\t" + "UnitCost" + "\t"
-                    + "Total" + "\t" + "Discount" + "\t" + "Line Total" + "\n\n");
+        receiptTop = ("Thank you for shopping at " + receipt.getStoreName() + "!" + pad + receipt.getTodaysDate() + "\n" + 
+                    "Customer ID: " + custID + pad + "Customer Name: " + custName + "\n\n" +
+                    "ProdID" + pad + "ProdName" + pad + "Qty" + pad + "UnitCost" + pad
+                    + "Total" + pad + "Discount" + pad + "Line Total" + "\n");
         
         LineItem[] items = receipt.getAllItems();
         
@@ -32,12 +33,12 @@ public class ScreenOutput implements ReceiptOutputStrategy {
         
         for (int i = 0; i < items.length; i++) {
             String receiptVar = "";
-            receiptVar = items[i].getProdID() + "\t";
-            receiptVar += items[i].getProdName() + "\t";
-            receiptVar += items[i].getQuantity() + "\t";
-            receiptVar += items[i].getProdPrice() + "\t";
-            receiptVar += items[i].getLineItemTotalBeforeDiscount() + "\t";
-            receiptVar += items[i].getDiscount() + "\t";
+            receiptVar = items[i].getProdID() + pad;
+            receiptVar += items[i].getProdName() + pad;
+            receiptVar += items[i].getQuantity() + pad;
+            receiptVar += items[i].getProdPrice() + pad;
+            receiptVar += items[i].getLineItemTotalBeforeDiscount() + pad;
+            receiptVar += items[i].getDiscount() + pad;
             receiptVar += items[i].getLineItemTotalAfterDiscount() + "\n";
             receiptMiddle += receiptVar;
         }
