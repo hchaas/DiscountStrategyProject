@@ -22,6 +22,8 @@ public class Product {
         this.setProdName(prodName);
         this.setProdPrice(prodPrice);
         this.setDiscountStrategy(discount);
+        this.setDiscountAmount();
+        
     }
     
     public final void setProdID(String prodID){
@@ -78,5 +80,9 @@ public class Product {
     
     public final double getDiscount(){
         return discountAmount;
+    }
+    
+    public final void setDiscountAmount(){
+        discountAmount = this.discount.getDiscount();
     }
 }

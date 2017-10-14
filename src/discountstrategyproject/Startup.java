@@ -14,14 +14,8 @@ public class Startup {
         DiscountStrategy discount = new NoDiscount();
         POSRegister register = new POSRegister(screenOutput, consoleOutput, dataAccess, discount);
         
-        
-        //customer 1 sales
-//        System.out.println("Enter customer ID or hit enter if none: ");
-//        Scanner input = new Scanner(System.in);
-//        String custID = input.nextLine();
-//        input.nextLine();
-        
-        register.startTransaction("100");
+        //enter customer id or 0 if none
+        register.startTransaction("200");
         //customerID, productID, quantity
         register.addItem("A101", 1);
         register.addItem("B205", 2);
