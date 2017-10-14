@@ -2,14 +2,14 @@
 package discountstrategyproject;
 
 public class PercentOffDiscount implements DiscountStrategy{
-    private double discountPercent;
+    private final double discountPercent;
     
     public PercentOffDiscount(double discountPercent){
         this.discountPercent = discountPercent;
     }
     
     @Override
-    public double getDiscount(){
+    public final double getDiscount(){
         return discountPercent;
     }
 }
