@@ -15,7 +15,7 @@ public class InMemoryDataAccess implements DataAccessStrategy{
     };
 
     @Override
-    public Customer getCustomerData(String custID) {
+    public final Customer getCustomerData(String custID) {
         //validation needed for parameter
         if (custID == null || custID.length() == 0) {
             System.out.println("Sorry, InMemoryDataAccess.getCustomerData method has "

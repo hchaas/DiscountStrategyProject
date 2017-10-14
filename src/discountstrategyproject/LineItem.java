@@ -6,15 +6,10 @@ public class LineItem {
     private double qty;
     private String prodName;
     private double prodDiscount;
-    private Product product;
+    private final Product product;
     private DataAccessStrategy dataAccess;
     private DiscountStrategy discount;
     
-
-//    public LineItem(DataAccessStrategy dataAccess, DiscountStrategy discount) {
-//        this.setDataAccessStrategy(dataAccess);
-//        this.setDiscountStrategy(discount);
-//    }
 
     public LineItem(String prodID, double qty, DataAccessStrategy dataAccess, DiscountStrategy discount) {
         this.setProdID(prodID);

@@ -62,7 +62,6 @@ public class Product {
     }
     
     public final Product findProduct(String prodID){
-        
         return dataAccess.getProductData(prodID);
     }
     

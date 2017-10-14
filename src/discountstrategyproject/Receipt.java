@@ -9,13 +9,11 @@ public class Receipt {
     private DataAccessStrategy dataAccess;
     private DiscountStrategy discount;
     private String custID;
-    private Customer customer;
+    private final Customer customer;
     private final Date date = new Date();
     private final String storeName = "Kohl's Department Store";
     private LineItem[] lineItems = new LineItem[0];
 
-    //things needed in a receipt: 
-    // date, store name, customer name, prod line items
     public Receipt(ReceiptOutputStrategy screenOutput, ReceiptOutputStrategy consoleOutput, DataAccessStrategy dataAccess, DiscountStrategy discount) {
         this.setScreenOutputStrategy(screenOutput);
         this.setConsoleOutputStrategy(consoleOutput);
@@ -83,7 +81,6 @@ public class Receipt {
     }
 
     public final void addToArray(final LineItem item) {
-        // needs validation
         LineItem[] tempItems = new LineItem[lineItems.length + 1];
         System.arraycopy(lineItems, 0, tempItems, 0, lineItems.length);
         tempItems[lineItems.length] = item;

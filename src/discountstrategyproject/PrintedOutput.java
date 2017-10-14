@@ -4,7 +4,7 @@ public class PrintedOutput implements ReceiptOutputStrategy {
 
     //ProdId*  ProdName*     Qty+   UnitCost*  Total^    Discount*  Linetotal
     @Override
-    public void output(Receipt receipt) {
+    public final void output(Receipt receipt) {
 
         System.out.println("Thank you for shopping at " + receipt.getStoreName() + "!" + "\t" + receipt.getTodaysDate() );
         
