@@ -27,6 +27,7 @@ public class Startup {
         register.addItem("C222", 1);
         register.addItem("E121", 2);
         register.addItem("D422", 4);
+        register.endTransaction();
     
     }
     

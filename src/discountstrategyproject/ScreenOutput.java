@@ -45,7 +45,7 @@ public class ScreenOutput implements ReceiptOutputStrategy {
         
         String receiptBottom = "Grand Total: $" + receipt.getGrandTotal();
         
-        String message = receiptTop + receiptMiddle + receiptBottom;
+        String message = String.format("%-20s %-20s %20s", receiptTop, receiptMiddle, receiptBottom);
         
         JOptionPane.showMessageDialog(null, message);
     }
