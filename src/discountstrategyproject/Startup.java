@@ -12,10 +12,10 @@ public class Startup {
         DataAccessStrategy dataAccess = new InMemoryDataAccess();
         //the default discount is no discount; this can get overridden later
         DiscountStrategy discount = new NoDiscount();
-        POSRegister register = new POSRegister(screenOutput, consoleOutput, dataAccess, discount);
+        POSRegister register = new POSRegister();
         
         //enter customer id or 0 if none
-        register.startTransaction("200");
+        register.startTransaction("200", screenOutput, consoleOutput, dataAccess, discount);
         //customerID, productID, quantity
         register.addItem("A101", 1);
         register.addItem("B205", 2);
@@ -23,7 +23,7 @@ public class Startup {
         register.endTransaction();
         
         //customer 2 sales
-        register.startTransaction("300");
+        register.startTransaction("300", screenOutput, consoleOutput, dataAccess, discount);
         register.addItem("C222", 1);
         register.addItem("E121", 2);
         register.addItem("D422", 4);

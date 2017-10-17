@@ -1,16 +1,15 @@
 package discountstrategyproject;
 
 public class POSRegister {
-    private final Receipt receipt;
+    private Receipt receipt;
     private String custID;
     
-    public POSRegister(ReceiptOutputStrategy screenOutput, ReceiptOutputStrategy consoleOutput, DataAccessStrategy dataAccess, DiscountStrategy discount){
-        this.receipt = new Receipt(screenOutput, consoleOutput, dataAccess, discount);
-    }
     
-    public final void startTransaction(String custID) {
+    public final void startTransaction(String custID, ReceiptOutputStrategy screenOutput, ReceiptOutputStrategy consoleOutput, DataAccessStrategy dataAccess, DiscountStrategy discount) {
+        this.receipt = new Receipt(screenOutput, consoleOutput, dataAccess, discount);
         this.setCustID(custID);
         receipt.setCustID(custID);
+        
     }
 
     public final void addItem(String prodID, double qty) {
