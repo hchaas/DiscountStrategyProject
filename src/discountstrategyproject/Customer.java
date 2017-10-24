@@ -15,21 +15,21 @@ public class Customer {
         this.setCustName(custName);
     }
 
-    public final void setDataAccessStrategy(DataAccessStrategy dataAccess) {
+    public final void setDataAccessStrategy(DataAccessStrategy dataAccess) throws IllegalArgumentException{
         if (dataAccess == null) {
             throw new IllegalArgumentException("Data access strategy cannot be null.");
         }
         this.dataAccess = dataAccess;
     }
 
-    public final void setCustID(String custID){
+    public final void setCustID(String custID) throws IllegalArgumentException{
         if (custID == null || custID.isEmpty()){
             throw new IllegalArgumentException("Customer ID cannot be null.");
         }
         this.custID = custID;
     }
     
-    public final void setCustName(String custName){
+    public final void setCustName(String custName) throws IllegalArgumentException{
         if (custName == null || custName.isEmpty()){
             throw new IllegalArgumentException("Customer name cannot be null.");
         }

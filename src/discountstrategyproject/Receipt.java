@@ -14,7 +14,8 @@ public class Receipt {
     private final String storeName = "Kohl's Department Store";
     private LineItem[] lineItems = new LineItem[0];
 
-    public Receipt(ReceiptOutputStrategy screenOutput, ReceiptOutputStrategy consoleOutput, DataAccessStrategy dataAccess, DiscountStrategy discount) {
+    public Receipt(ReceiptOutputStrategy screenOutput, ReceiptOutputStrategy consoleOutput, 
+            DataAccessStrategy dataAccess, DiscountStrategy discount) throws IllegalArgumentException{
         this.setScreenOutputStrategy(screenOutput);
         this.setConsoleOutputStrategy(consoleOutput);
         this.setDataAccessStrategy(dataAccess);
