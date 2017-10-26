@@ -16,7 +16,7 @@ public class POSRegister {
         receipt.newLineItem(prodID, qty);
     }
     
-    public final void setCustID (String custID){
+    public final void setCustID (String custID) throws IllegalArgumentException{
         if (custID == null || custID.isEmpty()){
             throw new IllegalArgumentException("Customer ID cannot be blank.");
         }

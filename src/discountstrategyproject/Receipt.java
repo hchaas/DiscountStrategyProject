@@ -24,35 +24,35 @@ public class Receipt {
         
     }
 
-    public final void setScreenOutputStrategy(ReceiptOutputStrategy screenOutput) {
+    public final void setScreenOutputStrategy(ReceiptOutputStrategy screenOutput) throws IllegalArgumentException {
         if (screenOutput == null) {
             throw new IllegalArgumentException("Screen output strategy cannot be null.");
         }
         this.screenOutput = screenOutput;
     }
 
-    public final void setConsoleOutputStrategy(ReceiptOutputStrategy consoleOutput) {
+    public final void setConsoleOutputStrategy(ReceiptOutputStrategy consoleOutput) throws IllegalArgumentException {
         if (consoleOutput == null) {
             throw new IllegalArgumentException("Console output strategy cannot be null.");
         }
         this.consoleOutput = consoleOutput;
     }
 
-    public final void setDataAccessStrategy(DataAccessStrategy dataAccess) {
+    public final void setDataAccessStrategy(DataAccessStrategy dataAccess) throws IllegalArgumentException{
         if (dataAccess == null) {
             throw new IllegalArgumentException("Data access strategy cannot be null.");
         }
         this.dataAccess = dataAccess;
     }
 
-    public final void setDiscountStrategy(DiscountStrategy discount) {
+    public final void setDiscountStrategy(DiscountStrategy discount) throws IllegalArgumentException {
         if (discount == null) {
             throw new IllegalArgumentException("Default discount strategy cannot be null.");
         }
         this.discount = discount;
     }
 
-    public final void setCustID(String custID) {
+    public final void setCustID(String custID) throws IllegalArgumentException {
         if (custID == null || custID.isEmpty()) {
             throw new IllegalArgumentException("Customer ID cannot be blank.");
         }
