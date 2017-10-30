@@ -24,38 +24,42 @@ public class Receipt {
         
     }
 
-    public final void setScreenOutputStrategy(ReceiptOutputStrategy screenOutput) throws IllegalArgumentException {
+    public final void setScreenOutputStrategy(ReceiptOutputStrategy screenOutput) throws NullArgumentException {
         if (screenOutput == null) {
-            throw new IllegalArgumentException("Screen output strategy cannot be null.");
+            throw new IllegalArgumentException();
         }
         this.screenOutput = screenOutput;
     }
 
-    public final void setConsoleOutputStrategy(ReceiptOutputStrategy consoleOutput) throws IllegalArgumentException {
+    public final void setConsoleOutputStrategy(ReceiptOutputStrategy consoleOutput) throws NullArgumentException {
         if (consoleOutput == null) {
-            throw new IllegalArgumentException("Console output strategy cannot be null.");
+            throw new IllegalArgumentException();
         }
         this.consoleOutput = consoleOutput;
     }
 
-    public final void setDataAccessStrategy(DataAccessStrategy dataAccess) throws IllegalArgumentException{
+    public final void setDataAccessStrategy(DataAccessStrategy dataAccess) throws NullArgumentException{
         if (dataAccess == null) {
-            throw new IllegalArgumentException("Data access strategy cannot be null.");
+            throw new IllegalArgumentException();
         }
         this.dataAccess = dataAccess;
     }
 
-    public final void setDiscountStrategy(DiscountStrategy discount) throws IllegalArgumentException {
+    public final void setDiscountStrategy(DiscountStrategy discount) throws NullArgumentException {
         if (discount == null) {
-            throw new IllegalArgumentException("Default discount strategy cannot be null.");
+            throw new IllegalArgumentException();
         }
         this.discount = discount;
     }
 
     public final void setCustID(String custID) throws IllegalArgumentException {
-        if (custID == null || custID.isEmpty()) {
-            throw new IllegalArgumentException("Customer ID cannot be blank.");
+        if (custID == null){
+            throw new NullArgumentException();
         }
+        if (custID.isEmpty()){
+            throw new EmptyArgumentException();
+        }
+               
         this.custID = custID;
     }
 
@@ -66,7 +70,6 @@ public class Receipt {
 
     public final Customer findCustomer() {
         return customer.findCustomer(custID);
-        
     }
 
     public final Date getTodaysDate() {

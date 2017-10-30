@@ -17,9 +17,13 @@ public class POSRegister {
     }
     
     public final void setCustID (String custID) throws IllegalArgumentException{
-        if (custID == null || custID.isEmpty()){
-            throw new IllegalArgumentException("Customer ID cannot be blank.");
+        if (custID == null){
+            throw new NullArgumentException();
         }
+        if (custID.isEmpty()){
+            throw new EmptyArgumentException();
+        }
+                
         this.custID = custID;
     }
     

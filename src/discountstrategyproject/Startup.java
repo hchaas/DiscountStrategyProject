@@ -20,7 +20,14 @@ public class Startup {
             register.addItem("B205", 2);
             register.addItem("C222", 4);
             register.endTransaction();
-        } catch (IllegalArgumentException iae) {
+        } 
+        catch (NullArgumentException nae){
+            nae.getMessage();
+        }
+        catch (EmptyArgumentException eae){
+            eae.getMessage();
+        }
+        catch (IllegalArgumentException iae) {
             iae.getMessage();
         }
 
