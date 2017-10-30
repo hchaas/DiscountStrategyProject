@@ -27,6 +27,9 @@ public class Startup {
         catch (EmptyArgumentException eae){
             eae.getMessage();
         }
+        catch(QuantityTooLowException qtle){
+            qtle.getMessage();
+        }
         catch (IllegalArgumentException iae) {
             iae.getMessage();
         }

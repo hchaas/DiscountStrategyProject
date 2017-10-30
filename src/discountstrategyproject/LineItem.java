@@ -19,30 +19,34 @@ public class LineItem {
         this.product = new Product(prodID, dataAccess);
     }
     
-    public final void setProdID(String prodID){
-        if (prodID == null || prodID.isEmpty()){
-            throw new IllegalArgumentException("Product ID cannot be null or blank.");
+    public final void setProdID(String prodID) throws IllegalArgumentException{
+        if (prodID == null){
+            throw new NullArgumentException();
         }
+        if (prodID.isEmpty()){
+            throw new EmptyArgumentException();
+        }
+                
         this.prodID = prodID;
     }
     
-    public final void setQuantity(double qty){
+    public final void setQuantity(double qty) throws QuantityTooLowException{
         if (qty<1){
-            throw new IllegalArgumentException("Quantity cannot be less than one.");
+            throw new QuantityTooLowException();
         }
         this.qty = qty;
     }
     
-    public final void setDataAccessStrategy(DataAccessStrategy dataAccess){
+    public final void setDataAccessStrategy(DataAccessStrategy dataAccess) throws NullArgumentException{
         if (dataAccess == null){
-            throw new IllegalArgumentException("Data access strategy cannot be blank.");
+            throw new NullArgumentException();
         }
         this.dataAccess = dataAccess;
     }
     
-    public final void setDiscountStrategy(DiscountStrategy discount){
+    public final void setDiscountStrategy(DiscountStrategy discount) throws NullArgumentException{
         if (discount == null){
-            throw new IllegalArgumentException("Discount strategy cannot be null.");
+            throw new NullArgumentException();
         }
         this.discount = discount;
     }

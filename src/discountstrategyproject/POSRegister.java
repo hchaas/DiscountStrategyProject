@@ -12,7 +12,16 @@ public class POSRegister {
         
     }
 
-    public final void addItem(String prodID, double qty) {
+    public final void addItem(String prodID, double qty) throws IllegalArgumentException {
+        if (prodID == null){
+            throw new NullArgumentException();
+        }
+        if (prodID.isEmpty()){
+            throw new EmptyArgumentException();
+        }
+        if (qty<1){
+            throw new QuantityTooLowException();
+        }
         receipt.newLineItem(prodID, qty);
     }
     

@@ -63,7 +63,16 @@ public class Receipt {
         this.custID = custID;
     }
 
-    public final void newLineItem(String prodID, double qty) {
+    public final void newLineItem(String prodID, double qty) throws IllegalArgumentException{
+        if (prodID == null){
+            throw new NullArgumentException();
+        }
+        if (prodID.isEmpty()){
+            throw new EmptyArgumentException();
+        }
+        if (qty < 1){
+            throw new QuantityTooLowException();
+        }
         LineItem lineItem = new LineItem(prodID, qty, dataAccess, discount);
         this.addToArray(lineItem);
     }
