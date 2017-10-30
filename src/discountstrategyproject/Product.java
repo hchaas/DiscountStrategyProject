@@ -26,37 +26,45 @@ public class Product {
         
     }
     
-    public final void setProdID(String prodID){
-        if (prodID == null || prodID.isEmpty()){
-            throw new IllegalArgumentException("Product ID cannot be null.");
+    public final void setProdID(String prodID) throws IllegalArgumentException{
+        if (prodID == null){
+            throw new NullArgumentException();
         }
+        if (prodID.isEmpty()){
+            throw new EmptyArgumentException();
+        }
+                
         this.prodID = prodID;
     }
     
-    public final void setProdName(String prodName){
-        if (prodName == null || prodName.isEmpty()){
-            throw new IllegalArgumentException("Product name cannot be null.");
+    public final void setProdName(String prodName) throws IllegalArgumentException{
+        if (prodName == null){
+            throw new NullArgumentException();
         }
+        if (prodName.isEmpty()){
+            throw new EmptyArgumentException();
+        }
+                
         this.prodName = prodName;
     }
     
-    public final void setProdPrice(double prodPrice){
+    public final void setProdPrice(double prodPrice) throws ProductPriceTooLowException{
         if (prodPrice<0){
-            throw new IllegalArgumentException("Product price cannot be less than zero.");
+            throw new ProductPriceTooLowException();
         }
         this.prodPrice = prodPrice;
     }
     
-    public final void setDiscountStrategy(DiscountStrategy discount){
+    public final void setDiscountStrategy(DiscountStrategy discount) throws NullArgumentException{
         if (discount == null){
-            throw new IllegalArgumentException("Discount strategy cannot be null.");
+            throw new NullArgumentException();
         }
         this.discount = discount;
     }
     
-    public final void setDataAccessStrategy(DataAccessStrategy dataAccess){
+    public final void setDataAccessStrategy(DataAccessStrategy dataAccess) throws NullArgumentException{
         if (dataAccess == null){
-            throw new IllegalArgumentException("Data access strategy cannot be null.");
+            throw new NullArgumentException();
         }
         this.dataAccess = dataAccess;
     }

@@ -67,7 +67,10 @@ public class LineItem {
         return qty;
     }
 
-    public final double getProdPrice() {
+    public final double getProdPrice() throws ProductPriceTooLowException{
+        if (product.getProdPrice() < 0){
+            throw new ProductPriceTooLowException();
+        }
         return product.getProdPrice();
     }
     

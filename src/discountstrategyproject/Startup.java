@@ -30,6 +30,9 @@ public class Startup {
         catch(QuantityTooLowException qtle){
             qtle.getMessage();
         }
+        catch (ProductPriceTooLowException pptl){
+            pptl.getMessage();
+        }
         catch (IllegalArgumentException iae) {
             iae.getMessage();
         }
