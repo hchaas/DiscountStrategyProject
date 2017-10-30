@@ -15,12 +15,14 @@ import static org.junit.Assert.*;
  * @author User
  */
 public class CustomerTest {
+    private Customer c;
     
     public CustomerTest() {
     }
     
     @Before
     public void setUp() {
+        c = new Customer(dataAccessStrategy dataAccess);
     }
     
     @After
@@ -28,7 +30,9 @@ public class CustomerTest {
     }
     
     //setCustID should not be null or empty, and it should throw an exception if it is
-    @Test
-    public void 
+    @Test (expected = NullArgumentException.class)
+    public void dataAccessStrategyShouldNotBeNull(){
+        
+    }
 
 }
