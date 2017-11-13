@@ -1,6 +1,8 @@
 package discountstrategyproject;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Receipt {
 
@@ -12,7 +14,7 @@ public class Receipt {
     private final Customer customer;
     private final Date date = new Date();
     private final String storeName = "Kohl's Department Store";
-    private LineItem[] lineItems = new LineItem[0];
+    private List<LineItem> lineItems = new ArrayList<>();
 
     public Receipt(ReceiptOutputStrategy screenOutput, ReceiptOutputStrategy consoleOutput, 
             DataAccessStrategy dataAccess, DiscountStrategy discount) throws IllegalArgumentException{
@@ -94,13 +96,15 @@ public class Receipt {
     }
 
     public final void addToArray(final LineItem item) {
-        LineItem[] tempItems = new LineItem[lineItems.length + 1];
-        System.arraycopy(lineItems, 0, tempItems, 0, lineItems.length);
-        tempItems[lineItems.length] = item;
-        lineItems = tempItems;
+        lineItems.add(item);
+        
+//        LineItem[] tempItems = new LineItem[lineItems.length + 1];
+//        System.arraycopy(lineItems, 0, tempItems, 0, lineItems.length);
+//        tempItems[lineItems.length] = item;
+//        lineItems = tempItems;
     }
 
-    public final LineItem[] getAllItems() {
+    public final List<LineItem> getAllItems() {
         return lineItems;
     }
 
@@ -111,8 +115,8 @@ public class Receipt {
     
     public final double getGrandTotal(){
         double total = 0;
-        for(int i=0; i<lineItems.length; i++){
-            total += lineItems[i].getLineItemTotalAfterDiscount();
+        for(int i=0; i<lineItems.size(); i++){
+            total += lineItems.get(i).getLineItemTotalAfterDiscount();
         }
         return total;
     }

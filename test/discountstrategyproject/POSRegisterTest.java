@@ -7,14 +7,14 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class POSRegisterTest {
-    POSRegister register;
+    private POSRegister register;
     
     public POSRegisterTest() {
-        register = new POSRegister();
     }
     
     @Before
     public void setUp() {
+        register = new POSRegister();
     }
     
     @After
@@ -30,4 +30,5 @@ public class POSRegisterTest {
     public void custIDShouldNotBeEmpty(){
         register.setCustID("");
     }
+    
 }

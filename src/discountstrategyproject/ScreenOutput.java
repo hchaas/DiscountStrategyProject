@@ -1,6 +1,8 @@
 
 package discountstrategyproject;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 public class ScreenOutput implements ReceiptOutputStrategy {
@@ -27,19 +29,21 @@ public class ScreenOutput implements ReceiptOutputStrategy {
                     "ProdID" + pad + "ProdName" + pad + "Qty" + pad + "UnitCost" + pad
                     + "Total" + pad + "Discount" + pad + "Line Total" + "\n");
         
-        LineItem[] items = receipt.getAllItems();
+        List<LineItem> items = new ArrayList<>();
+        items = receipt.getAllItems();
+        
         
         String receiptMiddle = "";
         
-        for (int i = 0; i < items.length; i++) {
+        for (int i = 0; i < items.size(); i++) {
             String receiptVar = "";
-            receiptVar = items[i].getProdID() + pad;
-            receiptVar += items[i].getProdName() + pad;
-            receiptVar += items[i].getQuantity() + pad;
-            receiptVar += items[i].getProdPrice() + pad;
-            receiptVar += items[i].getLineItemTotalBeforeDiscount() + pad;
-            receiptVar += items[i].getDiscount() + pad;
-            receiptVar += items[i].getLineItemTotalAfterDiscount() + "\n";
+            receiptVar = items.get(i).getProdID() + pad;
+            receiptVar += items.get(i).getProdName() + pad;
+            receiptVar += items.get(i).getQuantity() + pad;
+            receiptVar += items.get(i).getProdPrice() + pad;
+            receiptVar += items.get(i).getLineItemTotalBeforeDiscount() + pad;
+            receiptVar += items.get(i).getDiscount() + pad;
+            receiptVar += items.get(i).getLineItemTotalAfterDiscount() + "\n";
             receiptMiddle += receiptVar;
         }
         

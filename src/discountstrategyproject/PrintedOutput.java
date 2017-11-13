@@ -1,5 +1,8 @@
 package discountstrategyproject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PrintedOutput implements ReceiptOutputStrategy {
 
     //ProdId*  ProdName*     Qty+   UnitCost*  Total^    Discount*  Linetotal
@@ -29,15 +32,15 @@ public class PrintedOutput implements ReceiptOutputStrategy {
         System.out.printf("%-20s %-20s %-20s %-20s %-20s %-20s %-20s", 
                 "Prod ID", "Prod Name", "Qty","Unit Cost", "Total", "Discount", "Line Total" + "\n");
 
+        List<LineItem> items = new ArrayList<>();
+        items = receipt.getAllItems();
+//        LineItem[] items = receipt.getAllItems();
         
-        LineItem[] items = receipt.getAllItems();
-        
-        for (int i = 0; i< items.length; i++){
+        for (int i = 0; i< items.size(); i++){
             System.out.println("");
-            System.out.printf("%-20s %-20s %-20s %-20s %-20s %-20s %-20s", items[i].getProdID(),
-                    items[i].getProdName(), items[i].getQuantity(), items[i].getProdPrice(),
-                     items[i].getLineItemTotalBeforeDiscount(), items[i].getDiscount(),
-                     items[i].getLineItemTotalAfterDiscount());
+            System.out.printf("%-20s %-20s %-20s %-20s %-20s %-20s %-20s", items.get(i).getProdID(), items.get(i).getProdName(), 
+                    items.get(i).getQuantity(), items.get(i).getProdPrice(), items.get(i).getLineItemTotalBeforeDiscount(), items.get(i).getDiscount(),
+                     items.get(i).getLineItemTotalAfterDiscount());
             
         
         }
