@@ -1,5 +1,7 @@
 package discountstrategyproject;
 
+import java.util.Objects;
+
 public class POSRegister {
     private Receipt receipt;
     private String custID;
@@ -39,6 +41,40 @@ public class POSRegister {
     public final void endTransaction(){
       receipt.initiateOutput();
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 71 * hash + Objects.hashCode(this.receipt);
+        hash = 71 * hash + Objects.hashCode(this.custID);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final POSRegister other = (POSRegister) obj;
+        if (!Objects.equals(this.custID, other.custID)) {
+            return false;
+        }
+        if (!Objects.equals(this.receipt, other.receipt)) {
+            return false;
+        }
+        return true;
+    }
     
+    @Override
+    public final String toString(){
+        return "POSRegister object with these properties: \nReceipt: " + this.receipt.toString() + 
+                "\nCustomer ID: " + this.custID;
+    }
     
 }

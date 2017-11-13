@@ -7,4 +7,11 @@ public class NoDiscount implements DiscountStrategy{
     public final double getDiscount(){
         return 0;
     }
+
+    @Override
+    public String toString() {
+        return "NoDiscount";
+    }
+    
+    
 }

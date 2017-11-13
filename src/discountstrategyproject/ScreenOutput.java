@@ -53,5 +53,12 @@ public class ScreenOutput implements ReceiptOutputStrategy {
         
         JOptionPane.showMessageDialog(null, message);
     }
+
+    @Override
+    public String toString() {
+        return "ScreenOutput";
+    }
+    
+    
     
 }

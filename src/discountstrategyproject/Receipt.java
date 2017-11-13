@@ -3,6 +3,7 @@ package discountstrategyproject;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 public class Receipt {
 
@@ -120,5 +121,74 @@ public class Receipt {
         }
         return total;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 23 * hash + Objects.hashCode(this.screenOutput);
+        hash = 23 * hash + Objects.hashCode(this.consoleOutput);
+        hash = 23 * hash + Objects.hashCode(this.dataAccess);
+        hash = 23 * hash + Objects.hashCode(this.discount);
+        hash = 23 * hash + Objects.hashCode(this.custID);
+        hash = 23 * hash + Objects.hashCode(this.customer);
+        hash = 23 * hash + Objects.hashCode(this.date);
+        hash = 23 * hash + Objects.hashCode(this.storeName);
+        hash = 23 * hash + Objects.hashCode(this.lineItems);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Receipt other = (Receipt) obj;
+        if (!Objects.equals(this.custID, other.custID)) {
+            return false;
+        }
+        if (!Objects.equals(this.storeName, other.storeName)) {
+            return false;
+        }
+        if (!Objects.equals(this.screenOutput, other.screenOutput)) {
+            return false;
+        }
+        if (!Objects.equals(this.consoleOutput, other.consoleOutput)) {
+            return false;
+        }
+        if (!Objects.equals(this.dataAccess, other.dataAccess)) {
+            return false;
+        }
+        if (!Objects.equals(this.discount, other.discount)) {
+            return false;
+        }
+        if (!Objects.equals(this.customer, other.customer)) {
+            return false;
+        }
+        if (!Objects.equals(this.date, other.date)) {
+            return false;
+        }
+        if (!Objects.equals(this.lineItems, other.lineItems)) {
+            return false;
+        }
+        return true;
+    }
+    
+    public final String toString(){
+        return "Receipt object with the following properies.\nScreen Output: " + this.screenOutput +
+                "\nConsole Output: " + this.consoleOutput + "\nData Access Strategy: " + this.dataAccess +
+                "\nDiscount Strategy: " + this.discount.toString() + "\nCustomer ID: " + this.custID +
+                "\nCustomer: " + this.customer.toString() + "\nDate: " + this.date + "\nStore Name: " + this.storeName +
+                "\nLine Items: " + this.lineItems;
+
+    }
+    
+    
+    
 
 }

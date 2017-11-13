@@ -1,6 +1,8 @@
 
 package discountstrategyproject;
 
+import java.util.Objects;
+
 public class Product {
     private String prodID; 
     private String prodName;
@@ -92,4 +94,59 @@ public class Product {
     public final void setDiscountAmount(){
         discountAmount = this.discount.getDiscount();
     }
+    
+    @Override
+    public final String toString(){
+        return "Product object with the following properties: \n" +
+                "Product ID: " + this.prodID + "\nProduct Name: " + this.prodName +
+                "\nProduct Price: " + this.prodPrice + "\nDiscount: " + this.discount.toString() +
+                "\nDiscount Amount: " + this.discountAmount + "\nData Access Strategy: " + this.dataAccess.toString();
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 37 * hash + Objects.hashCode(this.prodID);
+        hash = 37 * hash + Objects.hashCode(this.prodName);
+        hash = 37 * hash + (int) (Double.doubleToLongBits(this.prodPrice) ^ (Double.doubleToLongBits(this.prodPrice) >>> 32));
+        hash = 37 * hash + Objects.hashCode(this.discount);
+        hash = 37 * hash + (int) (Double.doubleToLongBits(this.discountAmount) ^ (Double.doubleToLongBits(this.discountAmount) >>> 32));
+        hash = 37 * hash + Objects.hashCode(this.dataAccess);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Product other = (Product) obj;
+        if (Double.doubleToLongBits(this.prodPrice) != Double.doubleToLongBits(other.prodPrice)) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.discountAmount) != Double.doubleToLongBits(other.discountAmount)) {
+            return false;
+        }
+        if (!Objects.equals(this.prodID, other.prodID)) {
+            return false;
+        }
+        if (!Objects.equals(this.prodName, other.prodName)) {
+            return false;
+        }
+        if (!Objects.equals(this.discount, other.discount)) {
+            return false;
+        }
+        if (!Objects.equals(this.dataAccess, other.dataAccess)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
 }

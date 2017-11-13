@@ -1,5 +1,7 @@
 package discountstrategyproject;
 
+import java.util.Objects;
+
 public class Customer {
 
     private DataAccessStrategy dataAccess;
@@ -56,4 +58,38 @@ public class Customer {
     public final Customer findCustomer(String custID) {
         return dataAccess.getCustomerData(custID);
     }
+    
+    @Override
+    public final String toString(){
+        return ("This customer object represents " + this.custName + " associated with " + this.custID + " customer ID." +
+                "\nData Access Strategy: " + this.dataAccess.toString());
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Customer other = (Customer) obj;
+        if (!Objects.equals(this.custName, other.custName)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 43 * hash + Objects.hashCode(this.dataAccess);
+        hash = 43 * hash + Objects.hashCode(this.custID);
+        hash = 43 * hash + Objects.hashCode(this.custName);
+        return hash;
+    }
+    
 }
