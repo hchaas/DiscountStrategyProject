@@ -1,15 +1,20 @@
 package discountstrategyproject;
 
+import edu.wctc.advjava.hch.datetime.DateUtilities;
 import java.util.ArrayList;
 import java.util.List;
 
 public class PrintedOutput implements ReceiptOutputStrategy {
 
+    DateUtilities dateUtils = new DateUtilities();
+    
     //ProdId*  ProdName*     Qty+   UnitCost*  Total^    Discount*  Linetotal
     @Override
     public final void output(Receipt receipt) {
+        
 
-        System.out.println("Thank you for shopping at " + receipt.getStoreName() + "!" + "\t" + receipt.getTodaysDate() );
+        System.out.println("Thank you for shopping at " + receipt.getStoreName() + "!" + "\t" + 
+                dateUtils.convertDateToStringDefault(receipt.getTodaysDate()) );
         
         String custID = receipt.getCustID();
         String custName;

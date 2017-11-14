@@ -1,11 +1,13 @@
 
 package discountstrategyproject;
 
+import edu.wctc.advjava.hch.datetime.DateUtilities;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
 public class ScreenOutput implements ReceiptOutputStrategy {
+    DateUtilities dateUtils = new DateUtilities();
     
     @Override
     public final void output(Receipt receipt){
@@ -24,7 +26,8 @@ public class ScreenOutput implements ReceiptOutputStrategy {
         }
 
         
-        receiptTop = ("Thank you for shopping at " + receipt.getStoreName() + "!" + pad + receipt.getTodaysDate() + "\n" + 
+        receiptTop = ("Thank you for shopping at " + receipt.getStoreName() + "!" + pad + 
+                dateUtils.convertDateToStringDefault(receipt.getTodaysDate()) + "\n" + 
                     "Customer ID: " + custID + pad + "Customer Name: " + custName + "\n\n" +
                     "ProdID" + pad + "ProdName" + pad + "Qty" + pad + "UnitCost" + pad
                     + "Total" + pad + "Discount" + pad + "Line Total" + "\n");

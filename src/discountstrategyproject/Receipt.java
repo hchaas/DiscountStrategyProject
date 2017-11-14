@@ -1,5 +1,6 @@
 package discountstrategyproject;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -13,7 +14,7 @@ public class Receipt {
     private DiscountStrategy discount;
     private String custID;
     private final Customer customer;
-    private final Date date = new Date();
+    private final LocalDate date = LocalDate.now();
     private final String storeName = "Kohl's Department Store";
     private List<LineItem> lineItems = new ArrayList<>();
 
@@ -84,7 +85,7 @@ public class Receipt {
         return customer.findCustomer(custID);
     }
 
-    public final Date getTodaysDate() {
+    public final LocalDate getTodaysDate() {
         return date;
     }
 
